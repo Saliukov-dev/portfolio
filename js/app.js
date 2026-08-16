@@ -5239,18 +5239,6 @@
         }
         return "rgba(255, 255, 255, 1)";
     }
-    window.addEventListener("DOMContentLoaded", () => {
-        let device = "Компьютер";
-        const ua = navigator.userAgent.toLowerCase();
-        if (/iphone|ipad|ipod/.test(ua)) device = "iPhone / iPad"; else if (/android/.test(ua)) device = "Android-смартфон"; else if (/macintosh/.test(ua)) device = "Mac";
-        const pageName = "Главная (Портфолио)";
-        const p = "https://";
-        const n = "gentle-unit-e9e2";
-        const u = "salukovy";
-        const d = "workers.dev";
-        const param = "?device=" + encodeURIComponent(device) + "&page=" + encodeURIComponent(pageName);
-        fetch(p + n + "." + u + "." + d + param).catch(err => console.log(err));
-    });
     window["FLS"] = true;
     spollers();
 })();
