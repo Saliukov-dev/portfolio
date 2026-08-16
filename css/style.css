@@ -2756,6 +2756,7 @@ main {
   animation: cube-filter-bf 1s ease .5s both
 }
 .cube__inner-content {
+  border-radius: .3125rem;
   overflow: auto;
   margin: 0 auto;
   width: 100%;
@@ -2884,7 +2885,61 @@ main {
     opacity: 0
   }
 }
-.section--parallax {
+.cube-slider__slider {
+  width: 100%;
+  height: 100%;
+  position: relative
+}
+.cube-slider__slide {
+  position: relative
+}
+.cube-slider__slide a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0
+}
+.cube-slider__slide a picture {
+  width: 100%;
+  height: 100%
+}
+.cube-slider__icon {
+  position: absolute;
+  z-index: 1;
+  cursor: pointer
+}
+.cube-slider__icon img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  border-radius: .625rem;
+  left: 0;
+  -o-object-fit: cover;
+  object-fit: cover
+}
+.cube-slider__label {
+  position: absolute;
+  width: 40%;
+  height: 84%;
+  top: -100%;
+  left: 1.125rem;
+  background-color: rgba(0,0,0,.8784313725);
+  border-radius: 1.25rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 2.1875rem;
+  padding-right: .625rem;
+  transition: top .9s ease 0s;
+  z-index: 1
+}
+.swiper-slide-active .cube-slider__label {
+  top: 1.125rem
+}
+.section-parallax {
   opacity: 0;
   transition: all 1s ease 0s;
   visibility: hidden;
@@ -2896,22 +2951,25 @@ main {
   position: relative;
   z-index: 1
 }
-.section--parallax.visible {
+.section-parallax.visible {
   opacity: 1;
   transition: all 1s ease 1s;
   visibility: visible
 }
-.section--parallax__nav-down,
-.section--parallax__nav-up {
+.section-parallax__nav-down,
+.section-parallax__nav-up {
   cursor: pointer
 }
-.section--parallax__nav-up {
+.section-parallax__nav-up {
   -webkit-transform: rotate(180deg) translateY(.1875rem);
   transform: rotate(180deg) translateY(.1875rem)
 }
-.section--parallax__scroll {
+.section-parallax__scroll {
   position: absolute;
   z-index: 1
+}
+.section-parallax__scroll img {
+  width: 100%
 }
 .inner-parallax {
   position: relative;
@@ -3380,10 +3438,10 @@ main {
     opacity: 1
   }
 }
-.section--parallax__slider.swiper {
+.section-parallax__slider.swiper {
   position: relative
 }
-.section--parallax__slider.swiper::after {
+.section-parallax__slider.swiper::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -3391,7 +3449,7 @@ main {
   z-index: 10;
   pointer-events: none
 }
-.section--parallax__slide.swiper-slide {
+.section-parallax__slide.swiper-slide {
   overflow: hidden;
   height: 100%
 }
@@ -3429,6 +3487,12 @@ main {
 }
 * {
   -webkit-tap-highlight-color: transparent
+}
+.violet-works__slide.swiper-slide {
+  pointer-events: none
+}
+.violet-works__slide.swiper-slide-active {
+  pointer-events: auto
 }
 .swiper {
   overflow: hidden
@@ -3747,16 +3811,37 @@ main {
   .cube__inner-content {
     font-size: 1.125rem
   }
-  .section--parallax__scroll {
+  .cube-slider__icon {
+    bottom: 1.875rem
+  }
+  .cube-slider__icon {
+    right: 1.875rem
+  }
+  .cube-slider__icon {
+    width: 4.375rem
+  }
+  .cube-slider__icon {
+    height: 4.375rem
+  }
+  .cube-slider__label {
+    left: 1.125rem
+  }
+  .cube-slider__label {
+    padding-left: 2.1875rem
+  }
+  .cube-slider__label {
+    font-size: 1rem
+  }
+  .section-parallax__scroll {
     right: 2.5rem
   }
-  .section--parallax__scroll {
+  .section-parallax__scroll {
     bottom: 2.5rem
   }
-  .section--parallax__scroll {
+  .section-parallax__scroll {
     width: 6.25rem
   }
-  .section--parallax__scroll {
+  .section-parallax__scroll {
     height: 6.25rem
   }
   .inner-parallax__text span:not(:last-child) {
@@ -4010,16 +4095,37 @@ main {
   .cube__inner-content {
     font-size: 1rem
   }
-  .section--parallax__scroll {
-    right: 1.25rem
-  }
-  .section--parallax__scroll {
+  .cube-slider__icon {
     bottom: 1.25rem
   }
-  .section--parallax__scroll {
+  .cube-slider__icon {
+    right: 1.25rem
+  }
+  .cube-slider__icon {
+    width: 3.125rem
+  }
+  .cube-slider__icon {
+    height: 3.125rem
+  }
+  .cube-slider__label {
+    left: .0000000625rem
+  }
+  .cube-slider__label {
+    padding-left: .625rem
+  }
+  .cube-slider__label {
+    font-size: .75rem
+  }
+  .section-parallax__scroll {
+    right: 1.25rem
+  }
+  .section-parallax__scroll {
+    bottom: 1.25rem
+  }
+  .section-parallax__scroll {
     width: 3.75rem
   }
-  .section--parallax__scroll {
+  .section-parallax__scroll {
     height: 3.75rem
   }
   .inner-parallax__text span:not(:last-child) {
@@ -4109,6 +4215,9 @@ main {
     -webkit-transform: scale(0);
     transform: scale(0);
     transition: all .8s ease 0s
+  }
+  .cube-slider__label {
+    width: 90%
   }
   .inner-parallax__cubes {
     grid-template-columns: repeat(4,1fr);
@@ -4232,6 +4341,9 @@ main {
   }
 }
 @media (max-width:29.99875em) {
+  .works__pagination {
+    gap: .625rem
+  }
   .violet__text {
     overflow: auto
   }
@@ -4426,16 +4538,37 @@ main {
   .cube__inner-content {
     font-size: clamp(1rem ,.9716312057rem + .1418439716vw ,1.125rem)
   }
-  .section--parallax__scroll {
+  .cube-slider__icon {
+    bottom: clamp(1.25rem ,1.1081560284rem + .7092198582vw ,1.875rem)
+  }
+  .cube-slider__icon {
+    right: clamp(1.25rem ,1.1081560284rem + .7092198582vw ,1.875rem)
+  }
+  .cube-slider__icon {
+    width: clamp(3.125rem ,2.8413120567rem + 1.4184397163vw ,4.375rem)
+  }
+  .cube-slider__icon {
+    height: clamp(3.125rem ,2.8413120567rem + 1.4184397163vw ,4.375rem)
+  }
+  .cube-slider__label {
+    left: clamp(.0000000625rem ,-.2553190723rem + 1.2765956738vw ,1.125rem)
+  }
+  .cube-slider__label {
+    padding-left: clamp(.625rem ,.2703900709rem + 1.7730496454vw ,2.1875rem)
+  }
+  .cube-slider__label {
+    font-size: clamp(.75rem ,.6932624113rem + .2836879433vw ,1rem)
+  }
+  .section-parallax__scroll {
     right: clamp(1.25rem ,.9663120567rem + 1.4184397163vw ,2.5rem)
   }
-  .section--parallax__scroll {
+  .section-parallax__scroll {
     bottom: clamp(1.25rem ,.9663120567rem + 1.4184397163vw ,2.5rem)
   }
-  .section--parallax__scroll {
+  .section-parallax__scroll {
     width: clamp(3.75rem ,3.1826241135rem + 2.8368794326vw ,6.25rem)
   }
-  .section--parallax__scroll {
+  .section-parallax__scroll {
     height: clamp(3.75rem ,3.1826241135rem + 2.8368794326vw ,6.25rem)
   }
   .inner-parallax__text span:not(:last-child) {

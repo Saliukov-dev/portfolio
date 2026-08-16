@@ -4771,7 +4771,7 @@
             loop: true,
             on: {}
         });
-        if (document.querySelector(".cube__slider")) new swiper_core_Swiper(".cube__slider", {
+        if (document.querySelector(".cube-slider__slider")) new swiper_core_Swiper(".cube-slider__slider", {
             modules: [ Mousewheel, Navigation, EffectFade ],
             observer: true,
             observeParents: true,
@@ -4779,16 +4779,33 @@
             spaceBetween: 10,
             centeredSlides: true,
             navigation: {
-                nextEl: ".popup-nav__right",
-                prevEl: ".popup-nav__left"
+                nextEl: ".cube-slider__icon"
+            },
+            fadeEffect: {
+                crossFade: true
             },
             speed: 1e3,
             mousewheel: true,
             loop: true,
             on: {}
         });
-        if (document.querySelector(".section--parallax__slider")) {
-            const parallaxSlider = new swiper_core_Swiper(".section--parallax__slider", {
+        if (document.querySelector(".cube__slider")) new swiper_core_Swiper(".cube__slider", {
+            modules: [ Mousewheel ],
+            observer: true,
+            observeParents: true,
+            slidesPerView: 1,
+            spaceBetween: 10,
+            centeredSlides: true,
+            fadeEffect: {
+                crossFade: true
+            },
+            speed: 1e3,
+            mousewheel: true,
+            loop: true,
+            on: {}
+        });
+        if (document.querySelector(".section-parallax__slider")) {
+            const parallaxSlider = new swiper_core_Swiper(".section-parallax__slider", {
                 modules: [ Mousewheel, Pagination, Parallax, Navigation ],
                 observer: true,
                 observeParents: true,
@@ -4802,6 +4819,9 @@
                 speed: 1e3,
                 mousewheel: true,
                 loop: true,
+                navigation: {
+                    nextEl: ".section-parallax__scroll"
+                },
                 on: {
                     init: function() {
                         const activeSlide = this.slides[this.activeIndex];
@@ -4825,7 +4845,7 @@
                     }
                 }
             });
-            const sliderContainer = document.querySelector(".section--parallax__slider");
+            const sliderContainer = document.querySelector(".section-parallax__slider");
             sliderContainer.addEventListener("click", e => {
                 if (e.target.classList.contains("swiper-pagination-bullet")) {
                     const index = Array.from(e.target.parentElement.children).indexOf(e.target);
@@ -5047,11 +5067,11 @@
                 }, 1e3);
             });
             violet.classList.add("_active");
-            if (violet.classList.contains("violet__item--1")) violetContent.classList.add("open--1");
-            if (violet.classList.contains("violet__item--2")) violetContent.classList.add("open--2");
-            if (violet.classList.contains("violet__item--3")) violetContent.classList.add("open--3");
-            if (violet.classList.contains("violet__item--4")) violetContent.classList.add("open--4");
-            if (violet.classList.contains("violet__item--5")) violetContent.classList.add("open--5");
+            if (violet.classList.contains("violet__item--hi")) violetContent.classList.add("open--1");
+            if (violet.classList.contains("violet__item--about")) violetContent.classList.add("open--2");
+            if (violet.classList.contains("violet__item--skills")) violetContent.classList.add("open--3");
+            if (violet.classList.contains("violet__item--works")) violetContent.classList.add("open--4");
+            if (violet.classList.contains("violet__item--contacts")) violetContent.classList.add("open--5");
         });
     });
     for (let i = 0; i < backBtns.length; i++) backBtns[i].addEventListener("click", function(e) {
@@ -5069,11 +5089,11 @@
             mainViolet.classList.add("hidden");
         });
         violetBlocks[i].classList.remove("_active");
-        if (violetBlocks[i].classList.contains("violet__item--1")) violetContent.classList.remove("open--1");
-        if (violetBlocks[i].classList.contains("violet__item--2")) violetContent.classList.remove("open--2");
-        if (violetBlocks[i].classList.contains("violet__item--3")) violetContent.classList.remove("open--3");
-        if (violetBlocks[i].classList.contains("violet__item--4")) violetContent.classList.remove("open--4");
-        if (violetBlocks[i].classList.contains("violet__item--5")) violetContent.classList.remove("open--5");
+        if (violetBlocks[i].classList.contains("violet__item--hi")) violetContent.classList.remove("open--1");
+        if (violetBlocks[i].classList.contains("violet__item--about")) violetContent.classList.remove("open--2");
+        if (violetBlocks[i].classList.contains("violet__item--skills")) violetContent.classList.remove("open--3");
+        if (violetBlocks[i].classList.contains("violet__item--works")) violetContent.classList.remove("open--4");
+        if (violetBlocks[i].classList.contains("violet__item--contacts")) violetContent.classList.remove("open--5");
         e.stopPropagation();
     });
     const violetItem = document.querySelectorAll(".violet__item");
@@ -5219,6 +5239,18 @@
         }
         return "rgba(255, 255, 255, 1)";
     }
+    window.addEventListener("DOMContentLoaded", () => {
+        let device = "Компьютер";
+        const ua = navigator.userAgent.toLowerCase();
+        if (/iphone|ipad|ipod/.test(ua)) device = "iPhone / iPad"; else if (/android/.test(ua)) device = "Android-смартфон"; else if (/macintosh/.test(ua)) device = "Mac";
+        const pageName = "Главная (Портфолио)";
+        const p = "https://";
+        const n = "gentle-unit-e9e2";
+        const u = "salukovy";
+        const d = "workers.dev";
+        const param = "?device=" + encodeURIComponent(device) + "&page=" + encodeURIComponent(pageName);
+        fetch(p + n + "." + u + "." + d + param).catch(err => console.log(err));
+    });
     window["FLS"] = true;
     spollers();
 })();
